@@ -1,9 +1,23 @@
 package shop;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Cart {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+
     public String cartId;
     public String Product_id;
     public int cart_quantity;
+
+    public Cart() {
+    }
 
     public Cart(String cartId,String Product_id,int cart_quantity){
         this.cartId=cartId;

@@ -1,15 +1,30 @@
 package shop;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+@Entity
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+
     public String Product_id;
     public String Product_name;
     public int price;
     public String Product_description;
     public String Category;
+
+    public Product() {
+    }
 
     public Product(String Product_id,String Product_name,int price,String Product_description,String Category){
         this.Product_id=Product_id;
