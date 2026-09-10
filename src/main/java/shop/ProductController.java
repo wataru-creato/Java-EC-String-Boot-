@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -21,14 +23,14 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProducts(@RequestBody Product product){
+    public Product createProducts(@Valid @RequestBody Product product){
 
         return productService.createAllProduct(product);
     }
 
-    @PutMapping
-    public Product updateProducts(@RequestBody Product product){
-
+    @PutMapping("/{id}")
+    public Product updateProducts(@PathVariable Long id,@Valid @RequestBody Product product){
+        product.id = id;
         return productService.updateAllProduct(product);
     }
 
@@ -38,32 +40,4 @@ public class ProductController {
     }
 
 
-
-
-
-
-
-
-
-
-//    @GetMapping("/recipes/stock")
-//    public List<Stock> getStocks(){
-//        List<Stock> stocks=new ArrayList<>();
-//        stocks.add(new Stock("A001",10));
-//        return stocks;
-//    }
-//
-//    @GetMapping("/recipes/user")
-//    public List<User> getUser(){
-//        List<User> users=new ArrayList<>();
-//        users.add(new User("0001","admin","gmail.com","1111","東京都","0120"));
-//        return users;
-//    }
-//
-//    @GetMapping("/recipes/cart")
-//    public List<Cart> getCart(){
-//        List<Cart> carts=new ArrayList<>();
-//        carts.add(new Cart("1","A0001",1));
-//        return carts;
-//    }
 }

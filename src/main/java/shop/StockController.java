@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/stock")
@@ -21,12 +23,13 @@ public class StockController {
     }
 
     @PostMapping
-    public Stock createAllStocks(@RequestBody Stock stock){
+    public Stock createAllStocks(@Valid @RequestBody Stock stock){
         return stockService.createAllStock(stock);
     }
 
-    @PutMapping
-    public Stock updateAllStocks(@RequestBody Stock stock){
+    @PutMapping("/{id}")
+    public Stock updateAllStocks(@PathVariable Long id,@Valid @RequestBody Stock stock){
+        stock.id=id;
         return stockService.updateAllStock(stock);
     }
 

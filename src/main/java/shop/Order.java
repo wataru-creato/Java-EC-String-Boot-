@@ -7,6 +7,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -15,11 +21,21 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    @NotBlank(message = "注文IDは必須です")
     public String orderId;
+    @NotBlank(message = "ユーザIDは必須です")
     public String user_id;
+
+    @NotNull(message="注文日は必須です")
     public LocalDate  order_day;
+
+    @Positive(message = "価格は正の数で入力してください")
     public int purchasePrice;
+
+    @Max(value=9999,message="9999個までしか登録できません")
     public int quantity;
+
+    @NotBlank(message="ステータスは必須です")
     public String orderState;
 
     public Order(){

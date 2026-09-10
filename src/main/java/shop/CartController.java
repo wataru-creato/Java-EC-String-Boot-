@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/cart")
 public class CartController {
@@ -19,12 +21,13 @@ public class CartController {
     }
 
     @PostMapping
-    public Cart createALLCarts(@RequestBody Cart cart){
+    public Cart createALLCarts(@Valid @RequestBody Cart cart){
         return cartService.createAllCart(cart);
     }
 
-    @PutMapping
-    public  Cart updateALLCarts(@RequestBody Cart cart){
+    @PutMapping("/{id}")
+    public  Cart updateALLCarts(@PathVariable Long id,@Valid @RequestBody Cart cart){
+        cart.id=id;
         return cartService.updateAllCart(cart);
     }
 

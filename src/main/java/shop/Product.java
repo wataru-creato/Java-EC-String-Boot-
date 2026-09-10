@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
 
 @Entity
 public class Product {
@@ -17,9 +20,15 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    @NotBlank(message = "商品IDは必須です")
     public String Product_id;
+
+    @NotBlank(message="商品名は必須です")
     public String Product_name;
+
+    @Positive(message = "価格は正の数で入力してください")
     public int price;
+
     public String Product_description;
     public String Category;
 
