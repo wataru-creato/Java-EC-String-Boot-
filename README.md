@@ -46,3 +46,12 @@ order のようにSQLのシステム命令と被る単語をそのままエン�
 - updateやdeleteの時にはidをそれぞれ参照させることで特定して編集削除を行う。
 
 - @NotBlank(空白ではないか)はint型には使えない、String型でしか使えない。
+
+
+9/11
+- webにはCookieを使ったセッション管理の仕組みがあり、CSRFトークンがある。SwaggerやReactではJSONを使ってPOSTやPUTのリクエストを送るやり取りをするため、
+CSRFトークンが含まれない。Spring Boot側がトークンがないからおかしいと勘違いして403エラーで弾いてしまう。そのため.csrf().disable()の設定が必要である。
+
+- ブラウザ（ユーザー）ログイン→Spring Security「ユーザ探し指示」→UserDetailsServiceImpl「DBからデータを取得して」→データベース検索→
+  見つかったらUserエンティティを返す→Spring Security が受け取る→↓ getPassword() や getAuthorities() で中身を確認　ログイン成功or失敗
+
