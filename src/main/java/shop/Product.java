@@ -1,10 +1,7 @@
 package shop;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -28,6 +25,9 @@ public class Product {
 
     @Positive(message = "価格は正の数で入力してください")
     public int price;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    public List<Stock> stocks;
 
     public String Product_description;
     public String Category;

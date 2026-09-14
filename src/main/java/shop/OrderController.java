@@ -1,6 +1,7 @@
 package shop;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,11 +9,20 @@ import java.util.List;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
         @Autowired
         private OrderService orderService;
+
+        @Autowired
+        public OrderRepository orderRepository;
+
+        @Autowired
+        public ProductRepository productRepository;
+
+        @Autowired
+        public UserRepository userRepository;
 
         @GetMapping
         public List<Order> getAllOrders(){
@@ -21,11 +31,29 @@ public class OrderController {
         }
 
         @PostMapping
-        public Order createOrders(@Valid @RequestBody Order order){
+        public ResponseEntity<?> createOrder(@RequestBody @Valid OrderRequest request) {
+            // 1. productIdからProductを探す
+            Product product = productRepository.findById(request.getProductId())
+                    .orElseThrow(() -> new RuntimeException("商品が見つかりません"));
 
-            return orderService.createAllOrder(order);
+            // 2. userIdからUserを探す
+            User user = userRepository.findById(request.getUserId())
+                    .orElseThrow(() -> new RuntimeException("ユーザーが見つかりません"));
+
+            // 3. Orderエンティティを作って紐づける
+            Order order = new Order();
+            order.setOrderId(request.getOrderId());
+            order.setOrderState(request.getOrderState());
+            order.setOrderDay(request.getOrderDay());
+            order.setPurchasePrice(request.getPurchasePrice());
+            order.setQuantity(request.getQuantity());
+            order.setProduct(product);
+            order.setUser(user);
+
+            orderRepository.save(order);
+
+            return ResponseEntity.ok("注文を登録しました！");
         }
-
         @PutMapping("/{id}")
         public Order updateOrders(@PathVariable Long id,@Valid @RequestBody Order order){
             order.id=id;

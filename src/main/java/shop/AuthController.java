@@ -26,7 +26,6 @@ public class AuthController {
 
 
         User user = new User();
-        user.setUserId(request.getUserId());
         user.setPassword(hashedPassword); // データベースにはハッシュ化された文字列が入る
         user.setUserName(request.getUserName());
         user.setRole(request.getRole());

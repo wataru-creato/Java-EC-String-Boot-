@@ -1,9 +1,6 @@
 package shop;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Pattern;
@@ -15,20 +12,15 @@ import java.lang.Override;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 @Entity
+@Table(name = "user")
 public class User implements UserDetails{
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
-
-    public String getUserId() {
-        return userId;
-    }
 
     public void setPassword(String passwordHash){
         this.passwordHash = passwordHash;
@@ -70,15 +62,17 @@ public class User implements UserDetails{
         return role != null ? role : null;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-
-    @NotBlank(message = "ユーザーIDは必須です")
-    @Size(min = 4, max = 20, message = "ユーザーIDは4文字以上20文字以内で入力してください")
-    @Pattern(regexp = "^[a-zA-Z0-9_-]+$", message = "ユーザーIDは半角英数字、ハイフン、アンダーバーで入力してください")
-    public String userId;
 
     @NotBlank(message = "ユーザー名は必須です")
     @Size(max = 50, message = "ユーザー名は50文字以内で入力してください")
@@ -102,30 +96,22 @@ public class User implements UserDetails{
     @NotNull(message = "権限は必須です")
     public String role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public List<Order> orders;
+
     public User(){
 
     }
 
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
-            return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role));
+            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + this.role));
         }
 
-//        @Override
-//        public String getPassword(){
-//            return this.passwordHash;
-//        }
-//
-//
-//
-//        @Override
-//        public String getUsername(){
-//            return this.userName;
-//        }
 
         @Override
         public String getUsername() {
-        return userId; // Spring Securityには「userId」をユーザー名として扱ってもらう
+        return userName; // Spring Securityには「userId」をユーザー名として扱ってもらう
         }
 
         @Override
@@ -143,8 +129,7 @@ public class User implements UserDetails{
 
 
 
-    public User(String userId,String userName,String userEmail,String passwordHash,String address,String phoneNumber,String role){
-        this.userId=userId;
+    public User(String userName,String userEmail,String passwordHash,String address,String phoneNumber,String role){
         this.userName=userName;
         this.userEmail=userEmail;
         this.passwordHash=passwordHash;
@@ -158,6 +143,6 @@ public class User implements UserDetails{
 
 
     public String showUserInfo(){
-        return "ユーザID："+userId+",ユーザ名："+userName+"ユーザメール："+userEmail+",パスワード："+passwordHash+",住所："+address+",電話番号："+phoneNumber;
+        return "ユーザ名："+userName+"ユーザメール："+userEmail+",パスワード："+passwordHash+",住所："+address+",電話番号："+phoneNumber;
     }
 }

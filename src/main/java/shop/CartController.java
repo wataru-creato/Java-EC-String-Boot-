@@ -15,15 +15,43 @@ public class CartController {
     @Autowired
     private  CartService cartService;
 
+    @Autowired
+    private  CartRepository cartRepository;
+
+    @Autowired
+    private  ProductRepository productRepository;
+
+    @Autowired
+    private  UserRepository userRepository;
+
     @GetMapping
     public List<Cart> getALLCarts(){
         return cartService.getALLCart();
     }
 
     @PostMapping
-    public Cart createALLCarts(@Valid @RequestBody Cart cart){
-        return cartService.createAllCart(cart);
+    public ResponseEntity<?> createCart(@RequestBody CartRequest request) {
+        // 1. ProductをDBから探す
+        Product product = productRepository.findById(request.getProductId())
+                .orElseThrow(() -> new RuntimeException("商品が見つかりません"));
+
+        // 2. UserをDBから探す
+        User user = userRepository.findById(request.getUserId())
+                .orElseThrow(() -> new RuntimeException("ユーザーが見つかりません"));
+
+
+        Cart cart = new Cart();
+        cart.setCartId(request.getCartId());
+        cart.setCartQuantity(request.getCartQuantity());
+        cart.setProduct(product);
+        cart.setUser(user);
+
+        // 4. 保存
+        cartRepository.save(cart);
+
+        return ResponseEntity.ok("カートに追加しました！");
     }
+
 
     @PutMapping("/{id}")
     public  Cart updateALLCarts(@PathVariable Long id,@Valid @RequestBody Cart cart){
@@ -35,4 +63,6 @@ public class CartController {
     public  void deleteCarts(@PathVariable Long id){
         cartService.deleteCart(id);
     }
+
+
 }

@@ -13,6 +13,8 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
     private UserService userService;
 
     @GetMapping
@@ -21,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User createALLUsers(@Valid  User user){
+    public User createALLUsers(@Valid @RequestBody User user){
         return userService.createALLUser(user);
     }
 
