@@ -47,6 +47,8 @@
 
 ## ディレクトリ構成　
 
+```text
+
 Shop/
  └── src/
       └── main/
@@ -88,7 +90,7 @@ Shop/
                      ├── GlobalExceptionHandler.java
                      ├── SecurityConfig.java
                      └── ShopApplication.java
-
+```
 
 ## データベース設計（ER図）
 
