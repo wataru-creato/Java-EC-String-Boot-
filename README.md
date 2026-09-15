@@ -58,8 +58,8 @@ Shop/
                      │    ├── UserController.java
                      │    ├── ProductController.java
                      │    ├── CartController.java
-                     │     ├── StockController.java
-                     │    ├── OrderController
+                     │    ├── StockController.java
+                     │    ├── OrderController.java
                      │    ├── AuthController.java
                      │    └── LoginController.java
                      ├── service/
