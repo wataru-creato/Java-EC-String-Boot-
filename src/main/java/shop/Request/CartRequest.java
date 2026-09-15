@@ -1,4 +1,4 @@
-package shop;
+package shop.Request;
 
 public class CartRequest {
     private String cartId;

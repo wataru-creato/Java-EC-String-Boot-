@@ -1,7 +1,8 @@
-package shop;
+package shop.Repositry;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import shop.Entity.Stock;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface StockRepository extends JpaRepository<Stock, Long> {
     // これだけで、データの保存（save）や検索（findAll等）の機能が自動で備わります
 }

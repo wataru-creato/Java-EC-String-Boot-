@@ -1,9 +1,8 @@
-package shop;
+package shop.Entity;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;

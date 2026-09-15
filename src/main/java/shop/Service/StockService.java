@@ -1,14 +1,16 @@
-package shop;
+package shop.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import shop.Entity.Stock;
+import shop.Repositry.StockRepository;
 
 import java.util.List;
 
 @Service
 public class StockService {
     @Autowired
-    private  StockRepository stockRepository;
+    private StockRepository stockRepository;
 
     public List<Stock> getAllStock(){
        return stockRepository.findAll();

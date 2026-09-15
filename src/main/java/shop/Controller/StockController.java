@@ -1,13 +1,18 @@
-package shop;
+package shop.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import jakarta.validation.Valid;
+import shop.Entity.Product;
+import shop.Entity.Stock;
+import shop.Repositry.ProductRepository;
+import shop.Repositry.StockRepository;
+import shop.Request.StockRequest;
+import shop.Service.StockService;
 
 
 @RestController

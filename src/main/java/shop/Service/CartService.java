@@ -1,7 +1,9 @@
-package shop;
+package shop.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import shop.Entity.Cart;
+import shop.Repositry.CartRepository;
 
 import java.util.List;
 

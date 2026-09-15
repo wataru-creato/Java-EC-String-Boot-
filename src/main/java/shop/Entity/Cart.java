@@ -1,4 +1,4 @@
-package shop;
+package shop.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;

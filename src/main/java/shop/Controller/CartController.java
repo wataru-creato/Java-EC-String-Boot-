@@ -1,28 +1,35 @@
-package shop;
+package shop.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import jakarta.validation.Valid;
+import shop.Entity.Cart;
+import shop.Entity.Product;
+import shop.Entity.User;
+import shop.Repositry.CartRepository;
+import shop.Repositry.ProductRepository;
+import shop.Repositry.UserRepository;
+import shop.Request.CartRequest;
+import shop.Service.CartService;
 
 @RestController
 @RequestMapping("/cart")
 public class CartController {
     @Autowired
-    private  CartService cartService;
+    private CartService cartService;
 
     @Autowired
-    private  CartRepository cartRepository;
+    private CartRepository cartRepository;
 
     @Autowired
-    private  ProductRepository productRepository;
+    private ProductRepository productRepository;
 
     @Autowired
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
     @GetMapping
     public List<Cart> getALLCarts(){

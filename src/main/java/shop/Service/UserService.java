@@ -1,9 +1,11 @@
-package shop;
+package shop.Service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import shop.Entity.User;
+import shop.Repositry.UserRepository;
 
 import java.util.List;
 @Service
@@ -11,7 +13,7 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
     public List<User> getALLUser(){
         return userRepository.findAll();

@@ -1,6 +1,4 @@
-package shop;
-
-import javax.management.relation.Role;
+package shop.Request;
 
 public class RegisterRequest {
     private String userId;

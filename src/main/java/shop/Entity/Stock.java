@@ -1,14 +1,8 @@
-package shop;
+package shop.Entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 

@@ -1,4 +1,4 @@
-package shop;
+package shop.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +7,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import jakarta.validation.Valid;
+import shop.Entity.Order;
+import shop.Entity.Product;
+import shop.Entity.User;
+import shop.Repositry.OrderRepository;
+import shop.Repositry.ProductRepository;
+import shop.Repositry.UserRepository;
+import shop.Request.OrderRequest;
+import shop.Service.OrderService;
 
 @RestController
 @RequestMapping("/orders")

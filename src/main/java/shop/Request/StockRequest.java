@@ -1,4 +1,4 @@
-package shop;
+package shop.Request;
 
 public class StockRequest {
     private int stockQuantity;
