@@ -1,10 +1,98 @@
 # 【Java勉強】ECサイト制作からStoring Bootを学ぶ
 
+- Spring Boot EC Backend
+
 ## 使用技術
+
+- 言語/フレームワーク:Java (JDK 26), Spring Boot, Spring Data JPA
+- バリデーション: Jakarta Bean Validation
+- データベース: MySQL
+- ツール: Postman,Swagger（APIテスト）
 
 ## 目的
 
+- ECサイトのバックエンドの基本機能（商品、ユーザー、カート、在庫、注文）の一連の動きを理解する。
+- Javaの基本的な機能を知る
+
 ## 機能
+
+**User(ユーザ管理)**
+- ユーザ情報の取得(read)
+- ユーザの登録(create)
+
+**Product(商品管理)**
+- 商品情報の取得(read)
+- 商品の登録（create）
+- 商品の更新(put)
+- 商品の削除(delete)
+
+**Cart(カート管理)**
+- カート情報の取得(read)
+- カートへの追加（create）
+- カート情報の更新(put)
+- カート商品の削除(delete)
+  
+**Stock(在庫管理)**
+- 在庫情報の取得(read)
+- 在庫情報への追加（create）
+- 在庫情報の更新(put)
+- 在庫商品の削除(delete)
+
+**Order(注文管理)**
+- 注文情報の取得(read)
+- 注文情報への追加（create）
+- 注文情報の更新(put)
+- 注文商品の削除(delete)
+
+
+## ディレクトリ構成　
+
+Shop/
+ └── src/
+      └── main/
+           └── java/
+                └── shop/
+                     ├── controller/
+                     │    ├── UserController.java
+                     │    ├── ProductController.java
+                     │    ├── CartController.java
+                     │     ├── StockController.java
+                     │    ├── OrderController
+                     │    ├── AuthController.java
+                     │    └── LoginController.java
+                     ├── service/
+                     │    ├── UserService.java
+                     │    ├── ProductService.java
+                     │    ├── CartService.java
+                     │    ├── StockService.java
+                     │    ├── OrderService.java
+                     │    └── CustomUserDetailsService.java
+                     ├── repository/
+                     │    ├── UserRepository.java
+                     │    ├── ProductRepository.java
+                     │    ├── CartRepository.java
+                     │    ├── StockRepository.java
+                     │    └── OrderRepository.java
+                     ├── entity/
+                     │    ├── User.java
+                     │    ├── Product.java
+                     │    ├── Cart.java
+                     │    ├── Stock.java
+                     │    └── Order.java
+                     ├── request/
+                     │    ├── UserRequest.java
+                     │    ├── ProductRequest.java
+                     │    ├── CartRequest.java
+                     │    ├── StockRequest.java
+                     │    └── OrderRequest.java
+                     ├── GlobalExceptionHandler.java
+                     ├── SecurityConfig.java
+                     └── ShopApplication.java
+
+
+## データベース設計（ER図）
+
+![ER図](./img/EC-ER.png)
 
 ## 学んだことまとめ
 9/8
